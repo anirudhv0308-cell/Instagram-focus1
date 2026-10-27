@@ -27,13 +27,12 @@ jobs:
           gradle-version: "8.9"
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Accept Android SDK licences
-        run: yes | sdkmanager --licenses
-
+        uses: android-actions/setup-android@v
+        
       - name: Install Android SDK packages
-        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          sdkmanager --sdk_root="$ANDROID_HOME" --licenses
+          sdkmanager --sdk_root="$ANDROID_HOME" "platforms;android-35" "build-tools;35.0.0"
     
 
       - name: Build APK
